@@ -24,7 +24,7 @@ try:
     from src import utils, configs, main
 except (ImportError, ModuleNotFoundError, NameError):
     for file in precode_files:
-        assert file in src_dir_files, f'Отсутсвует файл {file}'
+        assert file in src_dir_files, f'Отсутствует файл {file}'
 
 
 def pytest_make_parametrize_id(config, val):
@@ -52,7 +52,7 @@ def get_mock_adapter() -> Adapter:
     adapter.register_uri(
         'GET',
         PEP_URL,
-        text='No, you are breathtaken!',
+        text='No, you are breath taken!',
         status_code=200,
     )
     return adapter
