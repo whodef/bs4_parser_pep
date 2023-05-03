@@ -1,5 +1,10 @@
 # Проект парсинга PEP
 
+[![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=ffffff&color=informational)](https://www.python.org/)
+[![BeautifulSoup4](https://img.shields.io/badge/-BeautifulSoup4-464646?style=flat&logo=BeautifulSoup4&logoColor=ffffff&color=9cf)](https://www.crummy.com/software/BeautifulSoup/)
+[![Logging](https://img.shields.io/badge/-Logging-464646?style=flat&logo=Logging&logoColor=ffffff&color=informational)](https://docs.python.org/3/library/logging.html)
+[![Prettytable](https://img.shields.io/badge/-Prettytable-464646?style=flat&logo=Prettytable&logoColor=ffffff&color=9cf)](https://github.com/jazzband/prettytable)
+
 Проект "Парсинг документов PEP" предназначен для удобства доступа к документации, теперь информация будет всегда под рукой.
 Развитие языка Python сопровождается документами PEP — Python Enhancement Proposal.
 К примеру:
