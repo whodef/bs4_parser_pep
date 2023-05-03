@@ -55,6 +55,25 @@ def pep(session):
         logging.exception(ERROR.format(error))
 
 
+def get_pep_status(session, url):
+    response = get_response(session, url)
+    soup = BeautifulSoup(response.text, 'lxml')
+
+    status_label = soup.find(string='Status')
+
+    if status_label is None:
+        logging.warning(f'Не удалось найти статус PEP на странице {url}')
+        return None
+
+    status_dd = status_label.parent.find_next_sibling('dd')
+
+    if status_dd is None:
+        logging.warning(f'Не удалось найти содержимое статуса PEP на странице {url}')
+        return None
+
+    return status_dd.text.strip()
+
+
 def whats_new(session):
     try:
         whats_new_url = urljoin(MAIN_DOC_URL, 'whatsnew/')
@@ -135,13 +154,6 @@ def download(session):
 
     except Exception as error:
         logging.exception(ERROR.format(error))
-
-
-def get_pep_status(session, url):
-    response = get_response(session, url)
-    soup = BeautifulSoup(response.text, 'lxml')
-
-    return soup.find(string='Status').parent.find_next_sibling('dd').text
 
 
 MODE_TO_FUNCTION = {
