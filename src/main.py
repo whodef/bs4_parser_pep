@@ -68,7 +68,9 @@ def get_pep_status(session, url):
     status_dd = status_label.parent.find_next_sibling('dd')
 
     if status_dd is None:
-        logging.warning(f'Не удалось найти содержимое статуса PEP на странице {url}')
+        logging.warning(
+            f'Не удалось найти содержимое статуса PEP на странице {url}'
+        )
         return None
 
     return status_dd.text.strip()
@@ -103,7 +105,9 @@ def latest_versions(session):
     try:
         response = get_response(session, MAIN_DOC_URL)
         soup = BeautifulSoup(response.text, 'lxml')
-        sidebar_wrapper = find_tag(soup, 'div', attrs={'class': 'sphinxsidebarwrapper'})
+        sidebar_wrapper = find_tag(
+            soup, 'div', attrs={'class': 'sphinxsidebarwrapper'}
+        )
         ul_tags = sidebar_wrapper.find_all('ul')
 
         for ul in ul_tags:
@@ -138,7 +142,9 @@ def download(session):
         response = get_response(session, downloads_url)
         soup = BeautifulSoup(response.text, 'lxml')
         doc_table = find_tag(soup, 'table', {'class': 'docutils'})
-        pdf_a4_tag = find_tag(doc_table, 'a', {'href': re.compile(r'.+pdf-a4\.zip$')})
+        pdf_a4_tag = find_tag(
+            doc_table, 'a', {'href': re.compile(r'.+pdf-a4\.zip$')}
+        )
         pdf_a4_link = pdf_a4_tag['href']
         archive_url = urljoin(downloads_url, pdf_a4_link)
         response = session.get(archive_url)
@@ -183,7 +189,9 @@ def main():
             control_output(results, args)
 
         logging.info(
-            ('' + '=' * 47) + ' Парсер успешно завершил работу! ' + ('' + '=' * 48 + '\n')
+            ('' + '=' * 47)
+            + ' Парсер успешно завершил работу! ' +
+            ('' + '=' * 48 + '\n')
         )
 
     except Exception as error:
