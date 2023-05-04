@@ -11,7 +11,9 @@ def control_output(parsed_data, command_line_args):
 
     output_functions = {
         'pretty': pretty_output,
-        'file': lambda parsed_data: file_output(parsed_data, command_line_args),
+        'file': lambda parsed_data: file_output(
+            parsed_data, command_line_args
+        ),
         'standard': standard_output,
     }
 
