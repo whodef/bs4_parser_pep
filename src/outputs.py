@@ -9,12 +9,14 @@ from constants import BASE_DIR, DATETIME_FORMAT
 def control_output(parsed_data, command_line_args):
     output_option = command_line_args.output
 
-    if output_option == 'pretty':
-        pretty_output(parsed_data)
-    elif output_option == 'file':
-        file_output(parsed_data, command_line_args)
-    else:
-        standard_output(parsed_data)
+    output_functions = {
+        'pretty': pretty_output,
+        'file': lambda parsed_data: file_output(parsed_data, command_line_args),
+        'standard': standard_output,
+    }
+
+    output_function = output_functions.get(output_option, standard_output)
+    output_function(parsed_data)
 
 
 def standard_output(parsed_data):

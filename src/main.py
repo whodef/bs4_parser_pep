@@ -123,12 +123,9 @@ def latest_versions(session):
         for version_link in version_links:
             link = version_link['href']
             text_match = re.search(pattern, version_link.text)
-
-            if text_match:
-                version, status = text_match.groups()
-            else:
-                version, status = version_link.text, ''
-
+            version, status = (
+                text_match.groups() if text_match else version_link.text, ''
+            )
             results.append([link, version, status])
         return results
 

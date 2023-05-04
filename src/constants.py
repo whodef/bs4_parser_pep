@@ -37,4 +37,6 @@ EXPECTED_STATUS = {
 
 # Constants
 
+OUTPUT_CHOICES = ('pretty', 'file')
+
 ERROR = 'Ошибка: {}'

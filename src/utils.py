@@ -7,16 +7,17 @@ def get_response(session, url):
     try:
         fetched_response = session.get(url)
         fetched_response.encoding = 'utf-8'
+
+        if fetched_response is None:
+            error_message = 'Response is Empty'
+            logging.error(error_message, stack_info=True)
+            raise ResponseIsEmptyException(error_message)
+
     except RequestException as error:
         logging.exception(
             f'Возникла ошибка при загрузке страницы {url}', stack_info=True
         )
         raise error
-
-    if fetched_response is None:
-        error_message = 'Response is Empty'
-        logging.error(error_message, stack_info=True)
-        raise ResponseIsEmptyException(error_message)
 
     return fetched_response
 
